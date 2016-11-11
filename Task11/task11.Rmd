@@ -48,3 +48,7 @@ points(c(62, 65, 68), prognozes, col=3, pch=19)
 
 legend(60, 550, c("Turimi duomenys", "Tiesinės regresijos tiesė", "Prognozės"), pch=c(19,NA,19), col=c(1,"red",3), lty=c(0,1,0))
 
+Šaltiniai:https://cran.r-project.org/web/packages/IPSUR/vignettes/IPSUR.pdf 11 skyrius, 
+https://en.wikipedia.org/wiki/Dependent_and_independent_variables ,
+https://www.r-bloggers.com/simple-linear-regression-2/ ,
+
