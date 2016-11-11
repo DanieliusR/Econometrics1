@@ -1,0 +1,49 @@
+---
+title: "wait"
+author: "Danielius Rimas"
+date: '2016 m lapkritis 11 d '
+output: html_document
+---
+knitr::opts_chunk$set(echo = TRUE)
+
+####Pakete datasets yra duomenų masyvas longley. Iš šio kintamųjų padarykite tiesinę regresiją, kur prognozuojamas kintamasis būtų GNP, o regresosius Employed.
+
+library("datasets")
+
+head(longley)
+
+Employed <- longley$Employed
+
+GNP <- longley$GNP
+
+####1. Įvertinti paprastosios tiesinės regresijos modelį. Pateikti modelio summary ir pakomentuoti ką reiškia gauti skaičiai. Kaip interpretuoti gautus rezultatus?
+
+Pasinaudojame funkcija lm norėdami įvertinti tiesinės regresijos modelį, pateikiame modelio summary.
+
+mod = lm(GNP~Employed)
+summary(mod)
+
+Residuals parodo galimą paklaidą tarp stebimų ir prognozuojamų duomenų (kaip taškai išsidėstę apie regresijos tiesę).
+
+Coefficients: Estimate parodo β0 ir β1 lygčiai y(GNP) = β0 + β1(Employed) + ϵ. Std. Error parodo β0 ir β1 standartinius nuokrypius. t value parodo Stjudento kriterijaus t reikšmę. Pr(>|t|) parodo reikšmingumo lygmenis, kurie nusako ar modelis tinkamai aprašo pradinius duomenis.
+
+Residual standard error parodo stebimų duomenų standartinę paklaidą(18.58) ir jos laisvės laipsnį(14).
+
+Multiple R-squared, tai modelio tinkamumo matas, modelis įvertina duomenis geriau, kai tinkamumo matas artesnis vienetui.
+
+####2. Padarykite modelio prognozes taškuose $62, 65, 68$.
+
+prognozes = predict(mod, newdata=data.frame(Employed=c(62, 65, 68)))
+
+prognozes
+
+####3. Išbrėžkite kintamųjų sklaidos diagramą kartu su tiesinės regresijos tiese ir naujomis prognozėmis. Grafiką pateikite su pilna legena, kurioje būtų nurodyti visi žymėjimai.
+
+plot(Employed, GNP, xlab="Employed", ylab="GNP", pch=19)
+
+abline(mod, col=2)
+
+points(c(62, 65, 68), prognozes, col=3, pch=19)
+
+legend(60, 550, c("Turimi duomenys", "Tiesinės regresijos tiesė", "Prognozės"), pch=c(19,NA,19), col=c(1,"red",3), lty=c(0,1,0))
+
