@@ -1,0 +1,57 @@
+---
+title: "Egzamino 2 uzd"
+author: "Danielius Rimas"
+date: '2017 m sausis 20 d '
+output: html_document
+---
+install.packages("prob")
+library(prob)
+library(MASS)
+###Teorinis skirstinys ir grafikas
+X1 <- rnorm(10000, mean = 3, sd = sqrt(2))
+
+X2 <- rnorm(10000, mean = -1, sd = sqrt(3))
+
+X = X1+X2
+
+####Teorinis skirstinys
+
+fitdistr(X, "normal")
+
+plot(density(X), main = "Tankio grafikas", xlab = "X reiksmes", ylab = "Daznis")
+
+polygon(density(X), col="red", border="red")
+
+###Teorines X imties (N=10000) generavimas
+
+####Skaicius naudoju, nes nezinau kaip kitaip "issitraukti" reikiamus skaicius is fisdistr(X, "normal") funkcijos
+
+tX <- rnorm(10000, 1.98922721, 2.26201908)
+
+plot(density(X), col="red", xlab = "Imciu reiksmes", ylab = "Daznis", main = "Imciu tankio grafikai")
+
+lines(density(tX))
+
+legend(4,.17, c("Duota imtis","Teorine imtis"),lty=c(1,1), lwd=c(1,1), col=c("black","red"))
+
+####dvid, dmed, dsd yra pradinio skirstinio vidurkis, mediana, standartinis nuokrypis, o tvid, tmed, tsd teorinio skirstinio
+
+dvid <- mean(X)
+
+tvid <- mean(tX)
+
+dmed <- median(X)
+
+tmed <- median(tX)
+
+dsd <- sd(X)
+
+tsd <- sd(tX)
+
+###Teorines ivykio |X| > 2 tikimybes ieskojimas
+
+tp <- pnorm(-2, mean = 1.98922721, sd = 2.26201908,) + pnorm(2, mean = 1.98922721, sd = 2.26201908, lower.tail = FALSE)
+
+###Tikimybes ieskojimas Monte-Carlo metodu
+
+

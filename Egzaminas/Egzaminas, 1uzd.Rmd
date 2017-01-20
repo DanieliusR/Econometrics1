@@ -1,0 +1,40 @@
+---
+title: "Egzamino 1 uzd"
+author: "Danielius Rimas"
+date: '2017 m sausis 20 d '
+output: html_document
+---
+set.seed(1234567890)
+
+x <- rnorm(5000)
+
+###Vidurkis ir standartinis nuokrypis
+
+vid <- mean(x)
+
+sd <- sd(x)
+
+###Ieskome isskirciu
+
+####Kaire ir desne intervalo puses
+ik <- min(vid-3*sd)
+
+id <- max(vid+3*sd)
+
+####Kurios reiksmes yra mazesnes(didesnes) uz intervalo kaire(desne) puses
+
+mazsn <- which(x<ik)
+
+didsn <- which(x>id)
+
+mazs <- x[mazsn]
+
+reiksmes <- append(mazs, x[didsn])
+
+indeksai <- append(mazsn, didsn)
+
+###Salinimas ir histograma
+
+xn <- x[-indeksai]
+
+hist(xn, main="Histograma be isskirciu", xlab="Reiksmes be isskirciu", ylab="Daznis")

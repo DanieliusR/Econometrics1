@@ -1,0 +1,47 @@
+---
+title: "Egzamino 3 uzd"
+author: "Danielius Rimas"
+date: '2017 m sausis 20 d '
+output: html_document
+---
+###Duomenu paruosimas
+
+setwd("U:/Egzaminas")
+
+####Pirmas nereikalingas reiksmes praleidziame
+
+data = read.csv("data.csv", skip = 7, sep=";")
+
+####Pradinis ilgis
+
+pradilg <- length(data$kaina)
+
+####Tikrinam duomenu tipus
+
+class(data$kaina)
+
+class(data$amzius)
+
+class(data$rida)
+
+class(data$galia)
+
+class(data$markesKodas)
+
+####Ismetam nereikalingas reiksmes
+
+data <- data[data$kaina != "MISSING", ]
+
+data <- data[data$amzius != "MISSING", ]
+
+data <- data[data$rida != "MISSING", ]
+
+data <- data[data$galia != "MISSING", ]
+
+data <- data[data$markesKodas != "MISSING", ]
+
+####Apskaiciuojame kiek reiksmiu reikejo ismesti
+
+dreiksmes <- pradilg-length(data$kaina)
+
+
